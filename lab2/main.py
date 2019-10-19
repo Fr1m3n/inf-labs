@@ -18,7 +18,6 @@ ZERO_ASCII_CODE = ord('0')
 # Свой int, надеюсь можно было написать...
 def _int(q):
     a = 0
-    print(q, type(q))
     for d in str(q):
         a = a * 10 + ord(d) - ord('0')
     return a
