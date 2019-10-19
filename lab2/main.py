@@ -19,7 +19,7 @@ ZERO_ASCII_CODE = ord('0')
 def _int(q):
     a = 0
     for d in str(q):
-        a = a * 10 + ord(d) - ord('0')
+        a = a * 10 + ord(d) - ZERO_ASCII_CODE
     return a
 
 # Функция перевода числа в десятичную СС
@@ -74,7 +74,8 @@ def decTo(source, res_radix):
     x = (2 if res_radix == FACTORIAL else _int(res_radix))
     res = ''
     while(source != 0):
-        res += str(source % x)
+        _temp = source % x
+        res += str(_temp) if _temp < 10 else chr(_temp - 10 + ord('A'))
         source //= x
         x = getNext(res_radix, x)
     return res[::-1]
