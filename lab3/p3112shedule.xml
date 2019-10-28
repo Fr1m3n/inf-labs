@@ -2,7 +2,9 @@
 	<lesson>
 		<time>
 			<start>
-				<hour>10</hour>
+				<hour>
+					10
+				</hour>
 				<minute>00</minute>
 			</start>
 			<end>

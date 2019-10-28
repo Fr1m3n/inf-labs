@@ -1,0 +1,61 @@
+{
+	"day": {
+		"lesson": [
+			{
+				"time": {
+					"start": {
+						"hour": 10,
+						"minute": 0
+					},
+					"end": {
+						"hour": 11,
+						"minute": 30
+					}
+				},
+				"name": "Физика(Прак)",
+				"teacher": {
+					"firstname": "Александр",
+					"lastname": "Смирнов",
+					"patronymic": "Витальевич"
+				},
+				"location": "Биржевая линия, д.16, лит.А",
+				"room": "539 ауд.",
+				"parity": "четная неделя"
+			},{
+				"time": {
+					"start": {
+						"hour": 10,
+						"minute": 0
+					},
+					"end": {
+						"hour": 11,
+						"minute": 30
+					}
+				},
+				"name": "Физика(Лаб)",
+				"teacher": {
+					"firstname": "Александр",
+					"lastname": "Смирнов",
+					"patronymic": "Витальевич"
+				},
+				"location": "Биржевая линия, д.16, лит.А",
+				"room": "539 ауд.",
+				"parity": "нечетная неделя"
+			},{
+				"time": {
+					"start": {
+						"hour": 11,
+						"minute": 40
+					},
+					"end": {
+						"hour": 13,
+						"minute": 10
+					}
+				},
+				"name": "Физика(Лек)",
+				"location": "Биржевая линия, д.16, лит.А",
+				"room": "550 ауд."
+			}
+		]
+	}
+}

@@ -1,7 +1,7 @@
 import re
 import string
 import random
-
+from Parsers.JsonPrinter import JsonPrinter
 
 class XmlParser:
     def __init__(self):
@@ -62,12 +62,26 @@ class XmlParser:
             temp = self.get_self_closed_token(src)
             if temp is not None:
                 key, value, src = temp
-                res[key] = value
+                if key in res:
+                    if type(res[key]) is dict:
+                        temp = res[key]
+                        res[key] = []
+                        res[key].append(temp)
+                    res[key].append(value)
+                else:
+                    res[key] = value
                 continue
             temp = self.get_default_token(src)
             if temp is not None:
                 key, value, src = temp
-                res[key] = value
+                if key in res:
+                    if type(res[key]) is dict:
+                        temp = res[key]
+                        res[key] = []
+                        res[key].append(temp)
+                    res[key].append(value)
+                else:
+                    res[key] = value
                 continue
             temp = self.comment_regexp.match(src)
             if temp is not None:
@@ -114,6 +128,13 @@ class XmlParser:
 
 if __name__ == "__main__":
     parser = XmlParser()
-    s = open("../p3112shedule.xml", "r").read()
-    print(parser.parse('<123><a q="123333">zxc</a></123>'))
+    out_file = open("../p3112shedule.json", "w")
+    input_file = open("../p3112shedule.xml", "r")
+    s = input_file.read()
+    # parser.parse('<123><a q="123333">zxc</a></123>')
+    # print()
+    jsonWriter = JsonPrinter()
+    q = parser.parse(s)
+    print(q)
+    out_file.write(jsonWriter.print(q))
     # print(parser.parse(s))
