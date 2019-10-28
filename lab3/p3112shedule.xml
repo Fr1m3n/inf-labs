@@ -1,0 +1,59 @@
+<day>
+	<lesson>
+		<time>
+			<start>
+				<hour>10</hour>
+				<minute>00</minute>
+			</start>
+			<end>
+				<hour>11</hour>
+				<minute>30</minute>
+			</end>
+		</time>
+		<name>Физика(Прак)</name>
+		<teacher>
+			<firstname>Александр</firstname>
+			<lastname>Смирнов</lastname>
+			<patronymic>Витальевич</patronymic>
+		</teacher>
+		<location>Биржевая линия, д.16, лит.А</location>
+		<room>539 ауд.</room>
+		<parity>четная неделя</parity>
+	</lesson>
+	<lesson>
+		<time>
+			<start>
+				<hour>10</hour>
+				<minute>00</minute>
+			</start>
+			<end>
+				<hour>11</hour>
+				<minute>30</minute>
+			</end>
+		</time>
+		<name>Физика(Лаб)</name>
+		<teacher>
+			<firstname>Александр</firstname>
+			<lastname>Смирнов</lastname>
+			<patronymic>Витальевич</patronymic>
+		</teacher>
+		<location>Биржевая линия, д.16, лит.А</location>
+		<room>539 ауд.</room>
+		<parity>нечетная неделя</parity>
+	</lesson>
+	<lesson>
+		<time>
+			<start>
+				<hour>11</hour>
+				<minute>40</minute>
+			</start>
+			<end>
+				<hour>13</hour>
+				<minute>10</minute>
+			</end>
+		</time>
+		<name>Физика(Лек)</name>
+		<location>Биржевая линия, д.16, лит.А</location>
+		<room>550 ауд.</room>
+	</lesson>
+</day>
