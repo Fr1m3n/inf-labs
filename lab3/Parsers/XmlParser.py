@@ -7,11 +7,11 @@ class XmlParser:
     def __init__(self):
         OPTIONS = re.DOTALL
         self.opened_token_regexp = re.compile(r'<([0-9a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*>', OPTIONS)
-        self.self_closed_token_regexp = re.compile(r'<([a-zA-Z]+:[0-9a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*/>', OPTIONS)
+        self.self_closed_token_regexp = re.compile(r'<([a-zA-Z0-9]+:[a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*/>', OPTIONS)
         self.comment_regexp = re.compile(r'<!--[0-9a-zA-Z ]*-->', OPTIONS)
         self.attributes_regexp = re.compile(r'[0-9a-zA-Z]+=\"[^\"]*\"', OPTIONS)
         self.default_token_regexp = re.compile(
-            r"<([a-zA-Z]+:[0-9a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*>(?P<inner>.*)<\/\1>", OPTIONS)
+            r"<([a-zA-Z0-9]+:[a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*>(?P<inner>.*)<\/\1>", OPTIONS)
 
     # генератор, который парсит параметры тэга типа <key>="<value>"
     def parse_args(self, args):
@@ -48,7 +48,6 @@ class XmlParser:
                     "text": values
                 }
             for key, value in self.parse_args(args):
-                print(key, value)
                 values[key] = value
         return g.groups()[0].split(':')[0], values, s[g.end():].strip()
 
@@ -116,5 +115,5 @@ class XmlParser:
 if __name__ == "__main__":
     parser = XmlParser()
     s = open("../p3112shedule.xml", "r").read()
-    print(parser.parse('<aqwe q="z"/>'))
-    print(parser.parse(s))
+    print(parser.parse('<123><a q="123333">zxc</a></123>'))
+    # print(parser.parse(s))
