@@ -75,9 +75,10 @@ class XmlParser:
         return res, src.strip()
 
 
+
 if __name__ == "__main__":
     parser = XmlParser()
-    print(parser.parse('''
+    first = parser.parse('''
             <!-- hoooooy -->
 
     <a>
@@ -87,4 +88,9 @@ if __name__ == "__main__":
         <c z="q "/>
         <d q="zc"/>
     </a>
-    '''.strip())[0])
+    '''.strip())[0]
+
+    second = parser.parse(open("../p3112shedule.xml", "r").read().strip())[0]
+
+    print(first)
+    print(second)
