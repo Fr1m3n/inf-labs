@@ -132,8 +132,8 @@ class XmlParser:
 
 if __name__ == "__main__":
     parser = XmlParser()
-    out_file = open("../p3112shedule.json", "w")
-    input_file = open("../p3112shedule.xml", "r")
+    out_file = open("../p3112schedule.json", "w")
+    input_file = open("../p3112schedule.xml", "r")
     s = input_file.read()
     # parser.parse('<123><a q="123333">zxc</a></123>')
     # print()

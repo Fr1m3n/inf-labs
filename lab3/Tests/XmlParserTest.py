@@ -7,7 +7,7 @@ from xml.dom.minidom import parse
 json_printer = JsonPrinter()
 tester = Tester()
 parser = XmlParser()
-input_file = open("../p3112shedule.xml", "r")
+input_file = open("../p3112schedule.xml", "r")
 s = input_file.read()
 
 
@@ -21,7 +21,7 @@ def xmltodict_test():
 
 @tester.test
 def minidom_test():
-    parse("../p3112shedule.xml")
+    parse("../p3112schedule.xml")
 
 
 if __name__ == "__main__":
