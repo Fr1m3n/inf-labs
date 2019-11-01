@@ -3,15 +3,16 @@ import string
 import random
 from Parsers.JsonPrinter import JsonPrinter
 
+
 class XmlParser:
     def __init__(self):
         OPTIONS = re.DOTALL
         self.opened_token_regexp = re.compile(r'<([0-9a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*>', OPTIONS)
-        self.self_closed_token_regexp = re.compile(r'<([a-zA-Z0-9]+:[a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*/>', OPTIONS)
+        self.self_closed_token_regexp = re.compile(r'<([a-zA-Z0-9]+:[0-9]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*/>', OPTIONS)
         self.comment_regexp = re.compile(r'<!--[0-9a-zA-Z ]*-->', OPTIONS)
         self.attributes_regexp = re.compile(r'[0-9a-zA-Z]+=\"[^\"]*\"', OPTIONS)
         self.default_token_regexp = re.compile(
-            r"<([a-zA-Z0-9]+:[a-zA-Z]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*>(?P<inner>.*)<\/\1>", OPTIONS)
+            r"<([a-zA-Z0-9]+:[0-9]+)( *[0-9a-zA-Z]+=\"[^\"]*\")*>(?P<inner>.*)<\/\1>", OPTIONS)
 
     # генератор, который парсит параметры тэга типа <key>="<value>"
     def parse_args(self, args):
@@ -91,6 +92,7 @@ class XmlParser:
         return res, src.strip()
 
     def make_tokens_unique(self, s):
+        identifier_count = 0
         identifier_length = 5
         ss = ''
         stack = []
@@ -99,16 +101,18 @@ class XmlParser:
                 continue
             is_closed = _token[0] == "/"
             token = _token.split(">")[0].split()[0][int(is_closed):]
-            new_token = token + ':' + self.rand_str(identifier_length)
+            # new_token = token + ':' + self.rand_str(identifier_length)
+            new_token = None
             if is_closed:
                 if token == stack[-1].split(':')[0]:
                     new_token = '/' + stack.pop()
                 else:
-
                     raise RuntimeError("Xml invalid. token: ")
             else:
                 if _token.split(">")[0][-1] != '/':
+                    new_token = token + ':' + str(identifier_count)
                     stack.append(new_token)
+                    identifier_count += 1
             ss += '<' + new_token + _token[len(token) + int(is_closed):]
         if len(stack) != 0:
             raise RuntimeError("Xml not valid. Not all tags closed.")

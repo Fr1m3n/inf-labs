@@ -1,21 +1,28 @@
 from Parsers.XmlParser import XmlParser
 from Tests.Fritest import Tester
+from Parsers.JsonPrinter import JsonPrinter
+import xmltodict
+from xml.dom.minidom import parse
 
+json_printer = JsonPrinter()
 tester = Tester()
 parser = XmlParser()
+input_file = open("../p3112shedule.xml", "r")
+s = input_file.read()
 
 
 @tester.test
-def single_object_test():
-    parsed = parser.parse("<q> 12 </q>")
-    would_be = {'q' : 12}
-    tester.equals_to(parsed, would_be)
-
+def my_parser_test():
+    parser.parse(s)
 
 @tester.test
-def b():
-    tester.equals_to(2, 2)
+def xmltodict_test():
+    xmltodict.parse(s)
+
+@tester.test
+def minidom_test():
+    parse("../p3112shedule.xml")
 
 
 if __name__ == "__main__":
-    tester.run_tests()
+    tester.run_tests(10)
